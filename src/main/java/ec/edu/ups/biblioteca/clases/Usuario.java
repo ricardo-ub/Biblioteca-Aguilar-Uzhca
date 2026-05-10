@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.biblioteca.clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,17 +16,13 @@ public class Usuario extends Persona{
     private int numeroCedula ;
 
     public Usuario() {
+        this.prestamos = new ArrayList<>();
     }
 
-    public Usuario(List<Prestamo> prestamos, int numeroCedula) {
-        this.prestamos = prestamos;
-        this.numeroCedula = numeroCedula;
-    }
-
-    public Usuario(List<Prestamo> prestamos, int numeroCedula, String nombre, String correo) {
+    public Usuario(int numeroCedula, String nombre, String correo) {
         super(nombre, correo);
-        this.prestamos = prestamos;
         this.numeroCedula = numeroCedula;
+        this.prestamos = new ArrayList<>();
     }
 
     public List<Prestamo> getPrestamos() {
