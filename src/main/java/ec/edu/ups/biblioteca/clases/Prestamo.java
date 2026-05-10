@@ -1,20 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.ups.biblioteca.clases;
 
 import java.time.LocalDate;
 
-/**
- *
- * @author DELL
- */
 public class Prestamo {
+
     private int id;
     private LocalDate fechaPrestamo;
     private LocalDate fechaDevolucion;
-    
+
     private Usuario usuario;
     private Libro libro;
     private Bibliotecario bibliotecario;
@@ -69,9 +62,10 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Prestamo{" + "id=" + id + ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion + ", usuario=" + usuario + ", libro=" + libro + ", bibliotecario=" + bibliotecario + '}';
+        return "Prestamo{" + "id=" + id + ", usuario=" + usuario.getNombre() + ", libro=" + libro.getTitulo() + ", fechaPrestamo=" + fechaPrestamo + ", fechaDevolucion=" + fechaDevolucion + '}';
     }
-    
-    
-    
+
+    public void cerrarPrestamo() {
+        this.fechaDevolucion = LocalDate.now();
+    }
 }

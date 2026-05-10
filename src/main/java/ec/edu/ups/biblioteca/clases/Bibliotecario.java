@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.ups.biblioteca.clases;
 
-/**
- *
- * @author DELL
- */
-public class Bibliotecario extends Persona{
+import java.time.LocalDate;
+
+public class Bibliotecario extends Persona {
+
     private String turno;
 
     public Bibliotecario() {
@@ -31,9 +26,30 @@ public class Bibliotecario extends Persona{
         this.turno = turno;
     }
 
+    public Prestamo registrarPrestamo(int id, Usuario usuario, Libro libro) {
+
+        if (usuario.puedePedir() && libro.verificarDisponibilidad()) {
+
+            libro.cambiarEstado(false);
+
+            Prestamo prestamo = new Prestamo(id, LocalDate.now(), null, usuario, libro, this);
+
+            usuario.getPrestamos().add(prestamo);
+
+            return prestamo;
+        }
+
+        return null;
+    }
+
+    public void registrarDevolucion(Prestamo prestamo) {
+
+        prestamo.cerrarPrestamo();
+        prestamo.getLibro().cambiarEstado(true);
+    }
+
     @Override
     public String toString() {
-        return "Bibliotecario{" + "turno=" + turno + '}';
+        return "Bibliotecario{" + "nombre=" + nombre + ", turno=" + turno + '}';
     }
-    
 }

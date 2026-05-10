@@ -11,9 +11,10 @@ import java.util.List;
  *
  * @author DELL
  */
-public class Usuario extends Persona{
+public class Usuario extends Persona {
+
     private List<Prestamo> prestamos;
-    private int numeroCedula ;
+    private int numeroCedula;
 
     public Usuario() {
         this.prestamos = new ArrayList<>();
@@ -45,5 +46,24 @@ public class Usuario extends Persona{
     public String toString() {
         return "Usuario{" + "prestamos=" + prestamos + ", numeroCedula=" + numeroCedula + '}';
     }
-    
+
+    public boolean puedePedir() {
+        return prestamos.size() < 3;
+    }
+
+    public void solicitarPrestamo(Libro libro) {
+
+        if (libro.verificarDisponibilidad()) {
+            System.out.println("Libro disponible");
+        } else {
+            System.out.println("Libro no disponible");
+        }
+    }
+
+    public void devolverLibro(Prestamo prestamo) {
+
+        prestamos.remove(prestamo);
+        prestamo.getLibro().cambiarEstado(true);
+    }
+
 }

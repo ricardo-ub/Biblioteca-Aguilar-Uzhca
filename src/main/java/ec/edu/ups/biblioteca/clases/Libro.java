@@ -9,12 +9,13 @@ package ec.edu.ups.biblioteca.clases;
  * @author DELL
  */
 public class Libro {
+
     private String ISBN;
     private String titulo;
     private String autor;
     private int anioPublicacion;
     private boolean disponibilidad;
-    
+
     private Categoria categoria;
 
     public Libro() {
@@ -82,5 +83,13 @@ public class Libro {
     public String toString() {
         return "Libro{" + "ISBN=" + ISBN + ", titulo=" + titulo + ", autor=" + autor + ", anioPublicacion=" + anioPublicacion + ", disponibilidad=" + disponibilidad + ", categoria=" + categoria + '}';
     }
-    
+
+    public boolean verificarDisponibilidad() {
+        return disponibilidad;
+    }
+
+    public void cambiarEstado(boolean disponible) {
+        this.disponibilidad = disponible;
+    }
+
 }
